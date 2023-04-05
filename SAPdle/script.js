@@ -7,6 +7,7 @@ var guesses = [];
 var answer;
 var solved;
 var turn;
+var reload;
 var pets = [];
 var numberOfPets;
 var wrongGuess = [];
@@ -399,7 +400,9 @@ function gameWin(y, x) {
     updateSolved()
         gameEnd = true;
     setTimeout(function () {
-        updateGuesses();
+        if (!reload) {
+            updateGuesses();
+            }
         displayEndScreen();
     }, 1500);
 }
@@ -428,7 +431,9 @@ function gameLose(y, x) {
     gameEnd = true;
     updateSolved();
     setTimeout(function () {
+        if (!reload) {
         updateGuesses();
+        }
         displayEndScreen();
     }, 1500);
 }
@@ -465,6 +470,7 @@ function wrongGuessMade(y, x) {
 }
 
 function checkSolved() {
+    reload = false;
     var index = null;
     storedList = JSON.parse(localStorage.getItem("solvedList"));
     parsedAnswerData = JSON.parse(answerData);
@@ -484,6 +490,7 @@ function checkSolved() {
     }
 
     if (solved == true) {
+        reload = true;
         for (let i = 0; i < storedList[index].guesses.length; i++) {
             displayPet(storedList[index].pets[i]);
             wrongGuessMade(i, storedList[index].guesses[i]);
@@ -491,6 +498,7 @@ function checkSolved() {
         gameWin(storedList[index].guesses.length, answer);
     }
     else if (solved == false && storedList[index].guesses.length < 5 && storedList[index].guesses.length > 0) {
+        reload = true;
         for (let i = 0; i < storedList[index].guesses.length; i++) {
             displayPet(storedList[index].pets[i]);
             wrongGuessMade(i, storedList[index].guesses[i]);
@@ -502,6 +510,7 @@ function checkSolved() {
     }
 }
     else if (solved == false && storedList[index].guesses.length == 5) {
+        reload = true;
         for (let i = 0; i < 4; i++) {
             displayPet(i+1);
             wrongGuessMade(i, storedList[index].guesses[i]);
