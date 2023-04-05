@@ -43,7 +43,7 @@ guesses = [guess1, guess2, guess3, guess4, guess5]
 window.addEventListener("load", readIn(), createSolved(), checkSolved());
 
 function trophyIn(x, y) {
-    if (guesses[y][x - 1].classList.contains('inactive') == false && solved == false) {
+    if (guesses[y][x - 1].classList.contains('inactive') == false && gameEnd == false) {
         for (let i = 0; i < x; i++) {
 
             guesses[y][i].src = "images/trophies/colorTrophy.png";
@@ -53,7 +53,7 @@ function trophyIn(x, y) {
 }
 
 function trophyOut(x, y) {
-    if (guesses[y][x - 1].classList.contains('inactive') == false && solved == false) {
+    if (guesses[y][x - 1].classList.contains('inactive') == false && gameEnd == false) {
         for (let i = 0; i < x; i++) {
 
             guesses[y][i].src = "images/trophies/blackTrophy.png";
@@ -465,6 +465,7 @@ function wrongGuessMade(y, x) {
 }
 
 function checkSolved() {
+    var index = null;
     storedList = JSON.parse(localStorage.getItem("solvedList"));
     parsedAnswerData = JSON.parse(answerData);
     answerIndex = getTodayAnswer();
@@ -475,7 +476,12 @@ function checkSolved() {
         }
     }
 
-solved = storedList[index].solved;
+    if (index == null) {
+        solved = false;
+    }
+    else {
+        solved = storedList[index].solved;
+    }
 
     if (solved == true) {
         for (let i = 0; i < storedList[index].guesses.length; i++) {
