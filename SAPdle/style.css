@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
+@font-face {
+    font-family: Lapsus;
+    src: url("resources/LapsusPro-Bold.otf") format("opentype");
+}
+
+/* Body and main container */
+
+body {
+    background-image: url("images/layout/background.png");
+    background-size: 850px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-repeat:repeat;
+}
+
+#mainContainer {
+    border-radius: 20px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+#mainContainer.solved {
+    opacity: 0.5;
+}
+
+#mainTitle {
+    font-size: 100pt;
+    font-family: 'Oswald';
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+/* Pets styling */
+
+#pets {
+  margin-top: 75px;
+  padding: 75px 25px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  margin-bottom: 75px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pets.active {
+  box-shadow: 1px 1px 15px 5px rgb(255, 217, 0, 0.5);
+}
+
+.petPick {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.493);
+  font-size: 18pt;
+}
+
+#turn {
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+#turnText {
+  font-family: Lapsus;
+  color:rgb(0, 132, 255);
+  -webkit-text-stroke: 1.5px white;
+}
+
+.circle {
+    background: black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 55px;
+    margin-bottom: 55px;
+}
+
+.petCol {
+    padding-left: 40px;
+}
+
+.petCol.active :hover {
+    transform: scaleY(1.5) scaleX(1.5);
+    filter: drop-shadow(1px 1px 5px rgb(255, 230, 0));
+
+}
+
+.petCol.active :hover h1 {
+    transform: scaleY(0.75) scaleX(0.75);
+    filter: drop-shadow(1px 1px 5px rgba(255, 230, 0, 0));
+}
+
+.petCol.active {
+  cursor: pointer;
+}
+
+.pet {
+    height: 115px;
+    width: 104px;
+}
+
+.attack {
+    background-image: url("images/stats/Attack.webp");
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    margin-left: 15px;
+    text-align: center;
+    color: white;
+
+}
+
+.stat {
+  font-family: Lapsus;
+  margin-top: 8px;
+  font-size: 20pt;
+  -webkit-text-stroke: 1.5px rgb(0, 0, 0);
+}
+
+.health {
+    background-image: url("images/stats/Health.webp");
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+
+.food {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  left: 65px;
+  bottom: 165px;
+  margin: 0px;
+}
+
+.level {
+    font-family: Lapsus;
+    color: rgb(255, 196, 0);
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    -webkit-text-stroke: 2.5px rgb(0, 0, 0);
+}
+
+.emptyPet {
+    text-align: center;
+    padding-top: 25px;
+    color: white;
+}
+
+/* Guess */
+
+.guess {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 35px;
+}
+
+.trophy {
+  width: 70px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.trophy.color {
+cursor: pointer;
+}
+
+.trophy.inactive {
+opacity: 0.2;
+}
+
+.shake {
+animation-name: shake;
+animation-duration: 0.5s;
+animation-fill-mode: both;
+}
+
+/* Incorrect guess animation */
+
+@keyframes shake {
+
+0%,
+100% {
+    transform: translateX(0);
+}
+
+10%,
+30%,
+50%,
+70%,
+90% {
+    transform: translateX(-4px);
+}
+
+20%,
+40%,
+60%,
+80% {
+    transform: translateX(4px);
+}
+}
+
+/* Solved */
+
+.guess.solved,
+.petCol.solved {
+    transform: scaleY(1.5) scaleX(1.5);
+}
+
+.trophy.color,
+.petCol.solved,
+#pets.solved {
+    -webkit-filter: drop-shadow(1px 1px 5px rgba(255, 217, 0, 0.5));
+    filter: drop-shadow(1px 1px 5px rgb(255, 217, 0, 0.5));
+}
+
+/* End Screen */
+
+.endScreen {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 500px;
+  height: 650px;
+  z-index: 2;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: white;
+}
+
+.endText {
+    font-family: lapsus;
+    color: white;
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+    text-align: center;
+
+}
+
+.endTrophyDiv {
+  position: relative;
+  left: 4.5%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.endTrophy {
+  width: 45px;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.exit{
+  font-family: Lapsus;
+  color: white;
+  -webkit-text-stroke: 2px rgb(0, 0, 0);
+  position:absolute;
+  right: 5%;
+  top: 1%;
+  cursor: pointer;
+}
+
+.endButton {
+  background-color: rgb(19, 19, 19);
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  cursor: pointer;
+}
+
+.endButtonText {
+  font-size: 27.5pt;
+  font-family: Lapsus;
+  -webkit-text-stroke: 1.5px rgb(0, 0, 0);
+  text-align: center;
+  padding-top: 15px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Bar graph */
+
+.bar-graph .guessData {
+    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+    -moz-animation: fade-in-text 2.2s 0.1s forwards;
+    animation: fade-in-text 2.2s 0.1s forwards;
+    opacity: 0;
+    font-family: Lapsus;
+    font-size: 25pt;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+  }
+  
+  .bar-graph-horizontal {
+    max-width: 380px;
+  }
+  
+  .bar-graph-horizontal > div {
+    float: left;
+    margin-bottom: 8px;
+    width: 100%;
+  }
+  
+  .bar-graph-horizontal .guessData {
+    float: left;
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 50px;
+    color: white;
+  }
+  
+  .bar-graph-horizontal .bar {
+    border-radius: 3px;
+    height: 55px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 0;
+  }
+  
+  .bar-graph-one .bar::after {
+    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+    -moz-animation: fade-in-text 2.2s 0.1s forwards;
+    animation: fade-in-text 2.2s 0.1s forwards;
+    color: #fff;
+    content: attr(data-percentage);
+    font-family: Lapsus;
+    font-size: 25pt;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    font-weight: 700;
+    position: absolute;
+    right: 16px;
+    top: 3px;
+  }
+  
+  .bar-graph-one .bar-1 .bar {
+    background-color: gray;
+    -webkit-animation: show-bar-1 1.2s 0.1s forwards;
+    -moz-animation: show-bar-1 1.2s 0.1s forwards;
+    animation: show-bar-1 1.2s 0.1s forwards;
+  }
+  
+  .bar-graph-one .bar-2 .bar {
+    background-color: gray;
+    -webkit-animation: show-bar-2 1.2s 0.2s forwards;
+    -moz-animation: show-bar-2 1.2s 0.2s forwards;
+    animation: show-bar-2 1.2s 0.2s forwards;
+  }
+  
+  .bar-graph-one .bar-3 .bar {
+    background-color: gray;
+    -webkit-animation: show-bar-3 1.2s 0.3s forwards;
+    -moz-animation: show-bar-3 1.2s 0.3s forwards;
+    animation: show-bar-3 1.2s 0.3s forwards;
+  }
+  
+  .bar-graph-one .bar-4 .bar {
+    background-color: gray;
+    -webkit-animation: show-bar-4 1.2s 0.4s forwards;
+    -moz-animation: show-bar-4 1.2s 0.4s forwards;
+    animation: show-bar-4 1.2s 0.4s forwards;
+  }
+
+  .bar-graph-one .bar-5 .bar {
+    background-color: gray;
+    -webkit-animation: show-bar-4 1.2s 0.4s forwards;
+    -moz-animation: show-bar-4 1.2s 0.4s forwards;
+    animation: show-bar-4 1.2s 0.4s forwards;
+  }
+  
+  /* Bar Graph Horizontal Animations */
+
+  @keyframes show-bar-1 {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--w, 0%);
+    }
+  }
+  
+  @keyframes show-bar-2 {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--w, 0%);
+    }
+  }
+  
+  @keyframes show-bar-3 {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--w, 0%);
+    }
+  }
+  
+  @keyframes show-bar-4 {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--w, 0%);
+    }
+  }
+
+  @keyframes show-bar-5 {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: var(--w, 0%);
+    }
+  }
+  
+  @keyframes fade-in-text {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

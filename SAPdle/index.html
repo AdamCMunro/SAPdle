@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPdle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="mainContainer" class="container bg-dark">
+
+        <h1 id="mainTitle">SAPdle</h1>
+
+        <div id="pets" class="row justify-content-center w-75 active">
+            <div id="petPickTitle">
+            <h1 class="petPick">Pick a pet to reveal</h1>
+            </div>
+            <div id="turn">
+                <h1 id="turnText"></h1>
+            </div>
+            <div class="col petCol active hidden">
+                <div id="pet5" class="circle" onClick=" activateNextGuess(5); displayPet(5);">
+                    <h1 id="petText5" class="emptyPet">?</h1>
+                </div>
+            </div>
+            <div class="col petCol active hidden">
+                <div id="pet4" class="circle" onClick="activateNextGuess(4); displayPet(4);">
+                    <h1 id="petText4" class="emptyPet">?</h1>
+                </div>
+            </div>
+            <div class="col petCol active hidden">
+                <div id="pet3" class="circle" onClick="activateNextGuess(3); displayPet(3);">
+                    <h1 id="petText3" class="emptyPet">?</h1>
+                </div>
+            </div>
+            <div class="col petCol active hidden">
+                <div id="pet2" class="circle" onClick="activateNextGuess(2); displayPet(2);">
+                    <h1 id="petText2" class="emptyPet">?</h1>
+                </div>
+            </div>
+            <div class="col petCol active hidden">
+                <div id="pet1" class="circle" onClick="activateNextGuess(1); displayPet(1);">
+                    <h1 id="petText1" class="emptyPet">?</h1>
+                </div>
+            </div>
+        </div>
+        <div id="guess1" class="row guess justify-content-center w-75">
+
+            <img id="g1t1" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseEnter="trophyIn(1, 0)"
+                onMouseOut="trophyOut(1, 0)" onClick="trophyClick(1, 0)">
+            <img id="g1t2" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(2, 0)"
+                onMouseOut="trophyOut(2, 0)" onClick="trophyClick(2, 0)">
+            <img id="g1t3" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(3, 0)"
+                onMouseOut="trophyOut(3, 0)" onClick="trophyClick(3, 0)">
+            <img id="g1t4" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(4, 0)"
+                onMouseOut="trophyOut(4, 0)" onClick="trophyClick(4, 0)">
+            <img id="g1t5" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(5, 0)"
+                onMouseOut="trophyOut(5, 0)" onClick="trophyClick(5, 0)">
+            <img id="g1t6" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(6, 0)"
+                onMouseOut="trophyOut(6, 0)" onClick="trophyClick(6, 0)">
+            <img id="g1t7" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(7, 0)"
+                onMouseOut="trophyOut(7, 0)" onClick="trophyClick(7, 0)">
+            <img id="g1t8" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(8, 0)"
+                onMouseOut="trophyOut(8, 0)" onClick="trophyClick(8, 0)">
+            <img id="g1t9" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(9, 0)"
+                onMouseOut="trophyOut(9, 0)" onClick="trophyClick(9, 0)">
+            <img id="g1t10" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(10, 0)"
+                onMouseOut="trophyOut(10, 0)" onClick="trophyClick(10, 0)">
+
+        </div>
+        <div id="guess2" class="row guess justify-content-center w-75">
+
+            <img id="g2t1" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseEnter="trophyIn(1, 1)"
+                onMouseOut="trophyOut(1, 1)" onClick="trophyClick(1, 1)">
+            <img id="g2t2" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(2, 1)"
+                onMouseOut="trophyOut(2, 1)" onClick="trophyClick(2, 1)">
+            <img id="g2t3" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(3, 1)"
+                onMouseOut="trophyOut(3, 1)" onClick="trophyClick(3, 1)">
+            <img id="g2t4" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(4, 1)"
+                onMouseOut="trophyOut(4, 1)" onClick="trophyClick(4, 1)">
+            <img id="g2t5" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(5, 1)"
+                onMouseOut="trophyOut(5, 1)" onClick="trophyClick(5, 1)">
+            <img id="g2t6" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(6, 1)"
+                onMouseOut="trophyOut(6, 1)" onClick="trophyClick(6, 1)">
+            <img id="g2t7" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(7, 1)"
+                onMouseOut="trophyOut(7, 1)" onClick="trophyClick(7, 1)">
+            <img id="g2t8" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(8, 1)"
+                onMouseOut="trophyOut(8, 1)" onClick="trophyClick(8, 1)">
+            <img id="g2t9" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(9, 1)"
+                onMouseOut="trophyOut(9, 1)" onClick="trophyClick(9, 1)">
+            <img id="g2t10" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(10, 1)"
+                onMouseOut="trophyOut(10, 1)" onClick="trophyClick(10, 1)">
+
+        </div>
+        <div id="guess3" class="row guess justify-content-center w-75 inactive">
+
+            <img id="g3t1" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseEnter="trophyIn(1, 2)"
+                onMouseOut="trophyOut(1, 2)" onClick="trophyClick(1, 2)">
+            <img id="g3t2" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(2, 2)"
+                onMouseOut="trophyOut(2, 2)" onClick="trophyClick(2, 2)">
+            <img id="g3t3" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(3, 2)"
+                onMouseOut="trophyOut(3, 2)" onClick="trophyClick(3, 2)">
+            <img id="g3t4" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(4, 2)"
+                onMouseOut="trophyOut(4, 2)" onClick="trophyClick(4, 2)">
+            <img id="g3t5" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(5, 2)"
+                onMouseOut="trophyOut(5, 2)" onClick="trophyClick(5, 2)">
+            <img id="g3t6" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(6, 2)"
+                onMouseOut="trophyOut(6, 2)" onClick="trophyClick(6, 2)">
+            <img id="g3t7" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(7, 2)"
+                onMouseOut="trophyOut(7, 2)" onClick="trophyClick(7, 2)">
+            <img id="g3t8" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(8, 2)"
+                onMouseOut="trophyOut(8, 2)" onClick="trophyClick(8, 2)">
+            <img id="g3t9" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(9, 2)"
+                onMouseOut="trophyOut(9, 2)" onClick="trophyClick(9, 2)">
+            <img id="g3t10" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(10, 2)"
+                onMouseOut="trophyOut(10, 2)" onClick="trophyClick(10, 2)">
+
+        </div>
+        <div id="guess4" class="row guess justify-content-center w-75">
+
+            <img id="g4t1" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseEnter="trophyIn(1, 3)"
+                onMouseOut="trophyOut(1, 3)" onClick="trophyClick(1, 3)">
+            <img id="g4t2" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(2, 3)"
+                onMouseOut="trophyOut(2, 3)" onClick="trophyClick(2, 3)">
+            <img id="g4t3" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(3, 3)"
+                onMouseOut="trophyOut(3, 3)" onClick="trophyClick(3, 3)">
+            <img id="g4t4" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(4, 3)"
+                onMouseOut="trophyOut(4, 3)" onClick="trophyClick(4, 3)">
+            <img id="g4t5" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(5, 3)"
+                onMouseOut="trophyOut(5, 3)" onClick="trophyClick(5, 3)">
+            <img id="g4t6" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(6, 3)"
+                onMouseOut="trophyOut(6, 3)" onClick="trophyClick(6, 3)">
+            <img id="g4t7" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(7, 3)"
+                onMouseOut="trophyOut(7, 3)" onClick="trophyClick(7, 3)">
+            <img id="g4t8" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(8, 3)"
+                onMouseOut="trophyOut(8, 3)" onClick="trophyClick(8, 3)">
+            <img id="g4t9" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(9, 3)"
+                onMouseOut="trophyOut(9, 3)" onClick="trophyClick(9, 3)">
+            <img id="g4t10" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(10, 3)"
+                onMouseOut="trophyOut(10, 3)" onClick="trophyClick(10, 3)">
+
+        </div>
+        <div id="guess5" class="row guess justify-content-center w-75">
+
+            <img id="g5t1" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseEnter="trophyIn(1, 4)"
+                onMouseOut="trophyOut(1, 4)" onClick="trophyClick(1, 4)">
+            <img id="g5t2" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(2, 4)"
+                onMouseOut="trophyOut(2, 4)" onClick="trophyClick(2, 4)">
+            <img id="g5t3" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(3, 4)"
+                onMouseOut="trophyOut(3, 4)" onClick="trophyClick(3, 4)">
+            <img id="g5t4" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(4, 4)"
+                onMouseOut="trophyOut(4, 4)" onClick="trophyClick(4, 4)">
+            <img id="g5t5" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(5, 4)"
+                onMouseOut="trophyOut(5, 4)" onClick="trophyClick(5, 4)">
+            <img id="g5t6" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(6, 4)"
+                onMouseOut="trophyOut(6, 4)" onClick="trophyClick(6, 4)">
+            <img id="g5t7" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(7, 4)"
+                onMouseOut="trophyOut(7, 4)" onClick="trophyClick(7, 4)">
+            <img id="g5t8" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(8, 4)"
+                onMouseOut="trophyOut(8, 4)" onClick="trophyClick(8, 4)">
+            <img id="g5t9" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(9, 4)"
+                onMouseOut="trophyOut(9, 4)" onClick="trophyClick(9, 4)">
+            <img id="g5t10" class="trophy inactive" src="images/trophies/blackTrophy.png" onMouseOver="trophyIn(10, 4)"
+                onMouseOut="trophyOut(10, 4)" onClick="trophyClick(10, 4)">
+
+        </div>
+
+
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
