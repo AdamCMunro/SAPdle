@@ -67,15 +67,15 @@ function trophyClick(x, y) {
     guessDivId = "guess" + (y + 1);
     guessDiv = document.getElementById(guessDivId);
     if (guesses[y][x - 1].classList.contains('inactive') == false && x != answer && !wrongGuessContains(x) && gameEnd == false && numberOfGuesses < 4) {
-        
+
         for (j = 0; j < x; j++) {
             guesses[y][j].src = "images/trophies/blackTrophy.png";
         }
         revealGuessWrong(0, x, y)
 
     }
-    else if(guesses[y][x - 1].classList.contains('inactive') == false && x != answer && !wrongGuessContains(x) && gameEnd == false && numberOfGuesses == 4) {
-        
+    else if (guesses[y][x - 1].classList.contains('inactive') == false && x != answer && !wrongGuessContains(x) && gameEnd == false && numberOfGuesses == 4) {
+
         for (j = 0; j < x; j++) {
             guesses[y][j].src = "images/trophies/blackTrophy.png";
         }
@@ -113,7 +113,7 @@ function readIn() {
     parsedAnswerData = JSON.parse(answerData);
     answer = parsedAnswerData[index].wins;
     numberOfPets = parsedAnswerData[index].numberOfPets;
-    turn = parsedAnswerData[index].turn; 
+    turn = parsedAnswerData[index].turn;
     for (let i = 0; i < numberOfPets; i++) {
         pets[i] = parsedAnswerData[index].pets[i];
     }
@@ -215,7 +215,7 @@ function displayEndScreen() {
     exit.classList.add("exit");
     exit.innerHTML = "X"
 
-exit.addEventListener('click', hideEndScreen);
+    exit.addEventListener('click', hideEndScreen);
 
     div.appendChild(exit);
     trophyDiv = document.createElement("div");
@@ -225,7 +225,7 @@ exit.addEventListener('click', hideEndScreen);
     trophy.classList.add("endTrophyDiv");
     for (i = 0; i < 10; i++) {
         trophy = document.createElement("img");
-    trophy.classList.add("endTrophy");
+        trophy.classList.add("endTrophy");
         if (i < answer) {
             trophy.src = "images/trophies/colorTrophy.png";
         }
@@ -261,7 +261,7 @@ exit.addEventListener('click', hideEndScreen);
     div.appendChild(section);
     body[0].appendChild(div);
     if (numberOfGuesses > 0) {
-    document.querySelector('div.bar-' + numberOfGuesses + ' div.bar').style.setProperty('background-color', '#e0b700')
+        document.querySelector('div.bar-' + numberOfGuesses + ' div.bar').style.setProperty('background-color', '#e0b700')
     }
     for (let i = 1; i < 6; i++) {
         document.querySelector('div.bar-' + i + ' div.bar').style.setProperty('--w', getGuessPercentage(i) + '%')
@@ -309,22 +309,22 @@ function getGuessPercentage(i) {
     var occurences = [];
     storedList = JSON.parse(localStorage.getItem("guessList"));
     for (let x = 1; x < 6; x++) {
-    occurences.push(getOccurences(storedList, x));
+        occurences.push(getOccurences(storedList, x));
     }
     var max = Math.max(...occurences);
-    if ((occurences[i-1]/max) < 0.75) {
-        return ((occurences[i-1]/max)*100 + 12);
+    if ((occurences[i - 1] / max) < 0.75) {
+        return ((occurences[i - 1] / max) * 100 + 12);
     }
     else {
-        return ((occurences[i-1]/max)*100-18);
+        return ((occurences[i - 1] / max) * 100 - 18);
     }
 }
 
 function getStreak() {
     storedList = JSON.parse(localStorage.getItem("guessList"));
-    for (let i = storedList.length-1; i >= 0; i--) {
+    for (let i = storedList.length - 1; i >= 0; i--) {
         if (storedList[i] == 0) {
-            return storedList.length-1-i;
+            return storedList.length - 1 - i;
         }
     }
     if (storedList.length > 0) {
@@ -348,9 +348,8 @@ function createEndButton() {
 function getTodayAnswer() {
     const date = new Date();
     parsedAnswerData = JSON.parse(answerData);
-    for (let i = 0; i < parsedAnswerData.length; i ++)
-    {
-        if ((date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()) == parsedAnswerData[i].date) {
+    for (let i = 0; i < parsedAnswerData.length; i++) {
+        if ((date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()) == parsedAnswerData[i].date) {
             return i;
         }
     }
@@ -370,8 +369,8 @@ function updateSolved() {
 function addSolved() {
     const date = new Date();
     storedList = JSON.parse(localStorage.getItem("solvedList"));
-    storedList.push({solved: solved, date: (date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()), guesses: wrongGuess, pets: petsRevealed});
-    for (let i =0; i < storedList.length; i ++) {
+    storedList.push({ solved: solved, date: (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()), guesses: wrongGuess, pets: petsRevealed });
+    for (let i = 0; i < storedList.length; i++) {
     }
     localStorage.setItem('solvedList', JSON.stringify(storedList));
 }
@@ -380,8 +379,8 @@ function gameWin(y, x) {
     guessDivId = "guess" + (y + 1);
     guessDiv = document.getElementById(guessDivId);
     numberOfGuesses++;
-    for (let i = 0; i < 10; i ++) {
-    guesses[y][i].classList.toggle("inactive", false)
+    for (let i = 0; i < 10; i++) {
+        guesses[y][i].classList.toggle("inactive", false)
     }
     for (let i = 0; i < x; i++) {
         guessDiv.classList.add("solved");
@@ -402,11 +401,11 @@ function gameWin(y, x) {
     document.getElementById("turnText").remove();
     solved = true;
     updateSolved()
-        gameEnd = true;
+    gameEnd = true;
     setTimeout(function () {
         if (!reload) {
             updateGuesses();
-            }
+        }
         displayEndScreen();
     }, 1500);
 }
@@ -436,7 +435,7 @@ function gameLose(y, x) {
     updateSolved();
     setTimeout(function () {
         if (!reload) {
-        updateGuesses();
+            updateGuesses();
         }
         displayEndScreen();
     }, 1500);
@@ -444,33 +443,33 @@ function gameLose(y, x) {
 
 function wrongGuessMade(y, x) {
     numberOfGuesses++;
-        for (let i = 0; i < guesses[y].length; i++) {
+    for (let i = 0; i < guesses[y].length; i++) {
 
-            if (i < x) {
-                guesses[y][i].classList.toggle("inactive", true);
-                guesses[y][i].classList.toggle("color", false);
-                guesses[y][i].src = "images/trophies/redTrophy.png";
+        if (i < x) {
+            guesses[y][i].classList.toggle("inactive", true);
+            guesses[y][i].classList.toggle("color", false);
+            guesses[y][i].src = "images/trophies/redTrophy.png";
 
-            }
-            else {
-                guesses[y][i].classList.toggle("inactive", true);
-            }
         }
-        document.getElementById("pets").classList.add("active");
-        div = document.getElementById("petPickTitle");
-        if (document.getElementsByClassName("petPick").length == 0) {
+        else {
+            guesses[y][i].classList.toggle("inactive", true);
+        }
+    }
+    document.getElementById("pets").classList.add("active");
+    div = document.getElementById("petPickTitle");
+    if (document.getElementsByClassName("petPick").length == 0) {
         h1 = document.createElement("h1");
         h1.innerHTML = "Pick a pet to reveal";
         h1.classList.add("petPick");
         div.appendChild(h1);
+    }
+    for (let i = 0; i < petCol.length; i++) {
+        if (petCol[i].classList.contains("hidden")) {
+            petCol[i].classList.add("active");
         }
-        for (let i = 0; i < petCol.length; i++) {
-            if (petCol[i].classList.contains("hidden")) {
-                petCol[i].classList.add("active");
-            }
-        }
-        wrongGuess.push(x);
-        updateSolved()
+    }
+    wrongGuess.push(x);
+    updateSolved()
 }
 
 function checkSolved() {
@@ -489,40 +488,40 @@ function checkSolved() {
     if (index == null) {
         solved = false;
     }
-    else  if (index !=null) {
+    else if (index != null) {
         solved = storedList[index].solved;
-    
 
-    if (solved == true) {
-        reload = true;
-        for (let i = 0; i < storedList[index].guesses.length; i++) {
-            displayPet(storedList[index].pets[i]);
-            wrongGuessMade(i, storedList[index].guesses[i]);
-        }
-        gameWin(storedList[index].guesses.length, answer);
-    }
-    else if (solved == false && storedList[index].guesses.length < 5 && storedList[index].guesses.length > 0) {
-        reload = true;
-        for (let i = 0; i < storedList[index].guesses.length; i++) {
-            displayPet(storedList[index].pets[i]);
-            wrongGuessMade(i, storedList[index].guesses[i]);
-    }
-    if (storedList[index].pets.length > storedList[index].guesses.length) {
-        activateNextGuess(storedList[index].pets[storedList[index].pets.length-1]);
-        displayPet(storedList[index].pets[storedList[index].pets.length-1]);
-    }
-}
-    else if (solved == false && storedList[index].guesses.length == 5) {
-        reload = true;
-        for (let i = 0; i < 4; i++) {
-            displayPet(i+1);
-            wrongGuessMade(i, storedList[index].guesses[i]);
-        }
-        displayPet(5);
-        gameLose(4, storedList[index].guesses[4]);
 
+        if (solved == true) {
+            reload = true;
+            for (let i = 0; i < storedList[index].guesses.length; i++) {
+                displayPet(storedList[index].pets[i]);
+                wrongGuessMade(i, storedList[index].guesses[i]);
+            }
+            gameWin(storedList[index].guesses.length, answer);
+        }
+        else if (solved == false && storedList[index].guesses.length < 5 && storedList[index].guesses.length > 0) {
+            reload = true;
+            for (let i = 0; i < storedList[index].guesses.length; i++) {
+                displayPet(storedList[index].pets[i]);
+                wrongGuessMade(i, storedList[index].guesses[i]);
+            }
+            if (storedList[index].pets.length > storedList[index].guesses.length) {
+                activateNextGuess(storedList[index].pets[storedList[index].pets.length - 1]);
+                displayPet(storedList[index].pets[storedList[index].pets.length - 1]);
+            }
+        }
+        else if (solved == false && storedList[index].guesses.length == 5) {
+            reload = true;
+            for (let i = 0; i < 4; i++) {
+                displayPet(i + 1);
+                wrongGuessMade(i, storedList[index].guesses[i]);
+            }
+            displayPet(5);
+            gameLose(4, storedList[index].guesses[4]);
+
+        }
     }
-}
 }
 
 function createSolved() {
@@ -539,23 +538,28 @@ function revealGuessRight(i, x, y) {
         guesses[y][j].classList.toggle("color", false);
     }
 
-        setTimeout(function () {
-            guesses[y][i].classList.toggle("color", true);
-            guesses[y][i].src = "images/trophies/colorTrophy.png"
-            i++
-    if (i < x) {
-        revealGuessRight(i, x, y)
-    }
-    else if (i == x) {
-        setTimeout(function () {
-        for (j = 0; j < 10; j++) {
-            guesses[y][j].classList.toggle("visible", false);
+    setTimeout(function () {
+        guesses[y][i].classList.toggle("color", true);
+        guesses[y][i].src = "images/trophies/colorTrophy.png"
+        guesses[y][i].classList.add('subtleShake')
+        guesses[y][i].addEventListener("animationend", function (e) {
+            guesses[y][i].classList.remove('subtleShake');
+
+        });
+        i++
+        if (i < x) {
+            revealGuessRight(i, x, y)
         }
-        gameWin(y, x);
-    }, 1000);
-    }
-  
-}, 2500/x);
+        else if (i == x) {
+            setTimeout(function () {
+                for (j = 0; j < 10; j++) {
+                    guesses[y][j].classList.toggle("visible", false);
+                }
+                gameWin(y, x);
+            }, 1000);
+        }
+
+    }, 2500 / x);
 }
 
 function revealGuessWrong(i, x, y) {
@@ -565,50 +569,60 @@ function revealGuessWrong(i, x, y) {
         guesses[y][j].classList.toggle("color", false);
     }
     setTimeout(function () {
-            guesses[y][i].classList.toggle("color", true);
-            guesses[y][i].src = "images/trophies/colorTrophy.png"
-            i++
-    if (i < x) {
-        revealGuessWrong(i, x, y)
-    }
-    else if (i == x) {
-        setTimeout(function () {
-        for (j = 0; j < 10; j++) {
-            guesses[y][j].classList.toggle("visible", false);
-        }
-        wrongGuessMade(y, x);
-        shake(y);
-    }, 1000);
-    }
+        guesses[y][i].classList.toggle("color", true);
+        guesses[y][i].src = "images/trophies/colorTrophy.png"
+        guesses[y][i].classList.add('subtleShake')
+        guesses[y][i].addEventListener("animationend", function (e) {
+            guesses[y][i].classList.remove('subtleShake');
 
-}, 2500/x);
+        });
+        i++
+        if (i < x) {
+            revealGuessWrong(i, x, y)
+        }
+        else if (i == x) {
+            setTimeout(function () {
+                for (j = 0; j < 10; j++) {
+                    guesses[y][j].classList.toggle("visible", false);
+                }
+                wrongGuessMade(y, x);
+                shake(y);
+            }, 1000);
+        }
+
+    }, 2500 / x);
 }
 
 function revealGuessLose(i, x, y) {
 
-for (j = 0; j < 10; j++) {
-    guesses[y][j].classList.toggle("inactive", true);
-    guesses[y][j].classList.toggle("visible", true);
-    guesses[y][j].classList.toggle("color", false);
-}
+    for (j = 0; j < 10; j++) {
+        guesses[y][j].classList.toggle("inactive", true);
+        guesses[y][j].classList.toggle("visible", true);
+        guesses[y][j].classList.toggle("color", false);
+    }
 
     setTimeout(function () {
-            guesses[y][i].classList.toggle("color", true);
-            guesses[y][i].src = "images/trophies/colorTrophy.png"
-            i++
-    if (i < x) {
-        revealGuessLose(i, x, y)
-    }
-    else if (i == x) {
-        setTimeout(function () {
-        for (j = 0; j < 10; j++) {
-            guesses[y][j].classList.toggle("visible", false);
+        guesses[y][i].classList.toggle("color", true);
+        guesses[y][i].src = "images/trophies/colorTrophy.png"
+        guesses[y][i].classList.add('subtleShake')
+        guesses[y][i].addEventListener("animationend", function (e) {
+            guesses[y][i].classList.remove('subtleShake');
+
+        });
+        i++
+        if (i < x) {
+            revealGuessLose(i, x, y)
         }
-        gameLose(y, x);
-    }, 1000);
-    }
-   
-}, 2500/x);
+        else if (i == x) {
+            setTimeout(function () {
+                for (j = 0; j < 10; j++) {
+                    guesses[y][j].classList.toggle("visible", false);
+                }
+                gameLose(y, x);
+            }, 1000);
+        }
+
+    }, 2500 / x);
 }
 
 function shake(y) {
