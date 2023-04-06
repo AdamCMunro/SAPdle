@@ -68,30 +68,31 @@ function trophyClick(x, y) {
     guessDiv = document.getElementById(guessDivId);
     if (guesses[y][x - 1].classList.contains('inactive') == false && x != answer && !wrongGuessContains(x) && gameEnd == false && numberOfGuesses < 4) {
         
-        wrongGuessMade(y, x);
+        for (j = 0; j < x; j++) {
+            guesses[y][j].src = "images/trophies/blackTrophy.png";
+        }
+        revealGuessWrong(0, x, y)
 
-        guessDiv.classList.add('shake')
-        guessDiv.addEventListener("animationend", function (e) {
-            guessDiv.classList.remove('shake');
-
-        });
     }
     else if(guesses[y][x - 1].classList.contains('inactive') == false && x != answer && !wrongGuessContains(x) && gameEnd == false && numberOfGuesses == 4) {
-
-        gameLose(y, x);
+        
+        for (j = 0; j < x; j++) {
+            guesses[y][j].src = "images/trophies/blackTrophy.png";
+        }
+        revealGuessLose(0, x, y)
 
     }
     else if (guesses[y][x - 1].classList.contains('inactive') == false && wrongGuessContains(x) && gameEnd == false) {
 
-        guessDiv.classList.add('shake')
-        guessDiv.addEventListener("animationend", function (e) {
-            guessDiv.classList.remove('shake');
+        shake(y);
 
-        });
     }
     else if (guesses[y][x - 1].classList.contains('inactive') == false && x == answer && gameEnd == false) {
 
-        gameWin(y, x);
+        for (j = 0; j < x; j++) {
+            guesses[y][j].src = "images/trophies/blackTrophy.png";
+        }
+        revealGuessRight(0, x, y)
 
     }
 }
@@ -151,6 +152,7 @@ function displayPet(x) {
         img.classList.add("pet");
         statsDiv = document.createElement("div");
         statsDiv.classList.add("row");
+        statsDiv.classList.add("statsDiv");
         attackDiv = document.createElement("div");
         attackDiv.classList.add("attack");
         attackH1 = document.createElement("h1");
@@ -310,17 +312,17 @@ function getGuessPercentage(i) {
     occurences.push(getOccurences(storedList, x));
     }
     var max = Math.max(...occurences);
-    if ((occurences[i-1]/max) < 0.80) {
+    if ((occurences[i-1]/max) < 0.75) {
         return ((occurences[i-1]/max)*100 + 12);
     }
     else {
-        return ((occurences[i-1]/max)*100-20);
+        return ((occurences[i-1]/max)*100-18);
     }
 }
 
 function getStreak() {
     storedList = JSON.parse(localStorage.getItem("guessList"));
-    for (let i = storedList.length-1; i > 0; i--) {
+    for (let i = storedList.length-1; i >= 0; i--) {
         if (storedList[i] == 0) {
             return storedList.length-1-i;
         }
@@ -389,10 +391,12 @@ function gameWin(y, x) {
     for (let j = 0; j < petCol.length; j++) {
         petCol[j].classList.add("active");
         displayPet(5 - j);
+        statsDiv = document.getElementsByClassName("statsDiv")
         petCol[j].classList.add("solved");
         if (petCol[j].classList.contains("active")) {
             petCol[j].classList.remove("active");
         }
+        statsDiv[j].classList.add("solved");
     }
     document.getElementById("pets").classList.add("solved");
     document.getElementById("turnText").remove();
@@ -485,9 +489,9 @@ function checkSolved() {
     if (index == null) {
         solved = false;
     }
-    else {
+    else  if (index !=null) {
         solved = storedList[index].solved;
-    }
+    
 
     if (solved == true) {
         reload = true;
@@ -502,11 +506,10 @@ function checkSolved() {
         for (let i = 0; i < storedList[index].guesses.length; i++) {
             displayPet(storedList[index].pets[i]);
             wrongGuessMade(i, storedList[index].guesses[i]);
-
-            if (storedList[index].pets.length > storedList[index].guesses.length) {
-                activateNextGuess(storedList[index].pets[storedList[index].pets.length-1]);
-                displayPet(storedList[index].pets[storedList[index].pets.length-1]);
-            }
+    }
+    if (storedList[index].pets.length > storedList[index].guesses.length) {
+        activateNextGuess(storedList[index].pets[storedList[index].pets.length-1]);
+        displayPet(storedList[index].pets[storedList[index].pets.length-1]);
     }
 }
     else if (solved == false && storedList[index].guesses.length == 5) {
@@ -520,10 +523,100 @@ function checkSolved() {
 
     }
 }
+}
 
 function createSolved() {
     if (localStorage.getItem("solvedList") === null) {
         blankArray = [];
         localStorage.setItem("solvedList", JSON.stringify(blankArray));
     }
+}
+
+function revealGuessRight(i, x, y) {
+    for (j = 0; j < 10; j++) {
+        guesses[y][j].classList.toggle("visible", true);
+        guesses[y][j].classList.toggle("inactive", true);
+        guesses[y][j].classList.toggle("color", false);
+    }
+
+        setTimeout(function () {
+            guesses[y][i].classList.toggle("color", true);
+            guesses[y][i].src = "images/trophies/colorTrophy.png"
+            i++
+    if (i < x) {
+        revealGuessRight(i, x, y)
+    }
+    else if (i == x) {
+        setTimeout(function () {
+        for (j = 0; j < 10; j++) {
+            guesses[y][j].classList.toggle("visible", false);
+        }
+        gameWin(y, x);
+    }, 1000);
+    }
+  
+}, 2500/x);
+}
+
+function revealGuessWrong(i, x, y) {
+    for (j = 0; j < 10; j++) {
+        guesses[y][j].classList.toggle("visible", true);
+        guesses[y][j].classList.toggle("inactive", true);
+        guesses[y][j].classList.toggle("color", false);
+    }
+    setTimeout(function () {
+            guesses[y][i].classList.toggle("color", true);
+            guesses[y][i].src = "images/trophies/colorTrophy.png"
+            i++
+    if (i < x) {
+        revealGuessWrong(i, x, y)
+    }
+    else if (i == x) {
+        setTimeout(function () {
+        for (j = 0; j < 10; j++) {
+            guesses[y][j].classList.toggle("visible", false);
+        }
+        wrongGuessMade(y, x);
+        shake(y);
+    }, 1000);
+    }
+
+}, 2500/x);
+}
+
+function revealGuessLose(i, x, y) {
+
+for (j = 0; j < 10; j++) {
+    guesses[y][j].classList.toggle("inactive", true);
+    guesses[y][j].classList.toggle("visible", true);
+    guesses[y][j].classList.toggle("color", false);
+}
+
+    setTimeout(function () {
+            guesses[y][i].classList.toggle("color", true);
+            guesses[y][i].src = "images/trophies/colorTrophy.png"
+            i++
+    if (i < x) {
+        revealGuessLose(i, x, y)
+    }
+    else if (i == x) {
+        setTimeout(function () {
+        for (j = 0; j < 10; j++) {
+            guesses[y][j].classList.toggle("visible", false);
+        }
+        gameLose(y, x);
+    }, 1000);
+    }
+   
+}, 2500/x);
+}
+
+function shake(y) {
+    guessDivId = "guess" + (y + 1);
+    guessDiv = document.getElementById(guessDivId);
+    guessDiv.classList.add('shake')
+    guessDiv.addEventListener("animationend", function (e) {
+        guessDiv.classList.remove('shake');
+
+    });
 }
