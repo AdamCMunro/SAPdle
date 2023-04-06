@@ -109,7 +109,7 @@ function wrongGuessContains(a) {
 }
 
 function readIn() {
-    index = getTodayAnswer();
+    index = getAnswer();
     parsedAnswerData = JSON.parse(answerData);
     answer = parsedAnswerData[index].wins;
     numberOfPets = parsedAnswerData[index].numberOfPets;
@@ -345,9 +345,21 @@ function createEndButton() {
     main.appendChild(div);
 }
 
-function getTodayAnswer() {
-    const date = new Date();
+function getAnswer() {
     parsedAnswerData = JSON.parse(answerData);
+
+    if ((window.location.href).includes("?")) {
+    url = (window.location.href).split("?");
+    answerDate = url[1];
+    for (let i = 0; i < parsedAnswerData.length; i++) {
+        if (answerDate == parsedAnswerData[i].date) {
+            return i;
+        }
+    }
+    }
+
+    const date = new Date();
+
     for (let i = 0; i < parsedAnswerData.length; i++) {
         if ((date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()) == parsedAnswerData[i].date) {
             return i;
@@ -367,9 +379,10 @@ function updateSolved() {
 }
 
 function addSolved() {
-    const date = new Date();
+    answerIndex = getAnswer();
+    parsedAnswerData = JSON.parse(answerData);
     storedList = JSON.parse(localStorage.getItem("solvedList"));
-    storedList.push({ solved: solved, date: (date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()), guesses: wrongGuess, pets: petsRevealed });
+    storedList.push({ solved: solved, date: parsedAnswerData[answerIndex].date, guesses: wrongGuess, pets: petsRevealed });
     for (let i = 0; i < storedList.length; i++) {
     }
     localStorage.setItem('solvedList', JSON.stringify(storedList));
@@ -477,10 +490,13 @@ function checkSolved() {
     var index = null;
     storedList = JSON.parse(localStorage.getItem("solvedList"));
     parsedAnswerData = JSON.parse(answerData);
-    answerIndex = getTodayAnswer();
+    answerIndex = getAnswer();
+    console.log("date: " + parsedAnswerData[answerIndex].date);
     for (let i = storedList.length - 1; i >= 0; i--) {
+        console.log(storedList[i].date);
         if (storedList[i].date == parsedAnswerData[answerIndex].date) {
             index = i;
+            console.log("howdy")
             break;
         }
     }

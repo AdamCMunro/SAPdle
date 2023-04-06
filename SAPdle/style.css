@@ -470,3 +470,35 @@ animation-fill-mode: both;
       opacity: 1;
     }
   }
+
+  /* previous puzzles */
+
+  #previousLink {
+    color: white;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    font-size: 15pt;
+    cursor: pointer;
+  }
+
+  .puzzleLink {
+    color: white;
+    font-size: 15pt;
+    cursor: pointer;
+  }
+
+  #todayContainer, #previousContainer {
+    padding-bottom: 50px;
+  }
+
+  .previousTitle {
+    color: white;
+    margin-left: 10px;
+  }
+
+  hr {
+    color: white;
+    height: 5px;
+    border-width: 2px;
+  }
