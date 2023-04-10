@@ -13,6 +13,7 @@ body {
     padding-top: 50px;
     padding-bottom: 50px;
     background-repeat:repeat;
+    height: 100%;
 }
 
 #mainContainer {
@@ -32,6 +33,41 @@ body {
     text-align: center;
     color: white;
     margin-top: 20px;
+}
+
+#footerContainer {
+  color: gray;
+  text-align:center;
+  height:100px;
+  background-color: rgb(15, 15, 15);
+  margin-top: 50px;
+  padding: 20px;
+  position: absolute;
+  bottom: 10;
+}
+
+/*Start Screen*/
+
+.startText {
+  font-size: 20pt;
+    font-family: Lapsus;
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+    -webkit-text-stroke: 1.5px rgb(0, 0, 0);
+}
+
+.startScreen {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 500px;
+  height: 650px;
+  z-index: 2;
+  border-radius: 40px;
+  border-style: solid;
+  border-color: white;
 }
 
 /* Pets styling */
@@ -75,6 +111,22 @@ body {
     margin: auto;
     margin-top: 55px;
     margin-bottom: 55px;
+    cursor: pointer;
+}
+
+.circle .nullPet {
+  background: rgb(29, 29, 29);
+  border-radius: 50%;
+  width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 55px;
+    margin-bottom: 55px;
+  cursor: auto;
+}
+
+.emptyPet .nullPet {
+  color: rgb(189, 188, 188);
 }
 
 .petCol {
@@ -92,18 +144,16 @@ body {
     filter: drop-shadow(1px 1px 5px rgba(255, 230, 0, 0));
 }
 
-.petCol.active {
-  cursor: pointer;
-}
-
 .pet {
+    max-width: 105px;
+    max-height: 105px;
     height: auto;
-    width: 104px;
-}
+    width: auto;
+  }
 
 .statsDiv {
   position: absolute;
-  bottom: 700px;
+  bottom: 750px;
 }
 
 .stat {
@@ -139,6 +189,15 @@ body {
   position: relative;
   left: 65px;
   bottom: 110px;
+  margin: 0px;
+}
+
+.food2 {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  right: 10px;
+  bottom: 30px;
   margin: 0px;
 }
 
@@ -475,10 +534,10 @@ animation-fill-mode: both;
 
   #previousLink {
     color: white;
-    margin-top: 100px;
     margin-bottom: 20px;
     margin-left: 10px;
     font-size: 15pt;
+    text-align: center;
     cursor: pointer;
   }
 
@@ -486,6 +545,7 @@ animation-fill-mode: both;
     color: white;
     font-size: 15pt;
     cursor: pointer;
+    display: block;
   }
 
   #todayContainer, #previousContainer {
@@ -501,4 +561,83 @@ animation-fill-mode: both;
     color: white;
     height: 5px;
     border-width: 2px;
+  }
+
+  /*Mobile*/
+
+  @media (max-width: 900px) {
+    #turnText {
+    font-size: 20pt;
+    -webkit-text-stroke: 1px white;
+    }
+    .level {
+      font-size: 20pt;
+      -webkit-text-stroke: 1px rgb(0, 0, 0);
+    }
+    .circle {
+      width: 50px;
+      height: 50px;
+      padding-top: 5px;
+    }
+    .emptyPet {
+      font-size: 20pt;
+      padding-top: 5px;
+    }
+    .petCol {
+      padding-left: 0px;
+  }
+  .pet {
+    max-width: 75px;
+    max-height: 75px;
+    height: auto;
+    width: auto;
+  }
+
+  .food {
+    height: 25px;
+    width: 25px;
+    position: relative;
+  left: 50px;
+  bottom: 70px;
+  margin: 0px;
+  }
+
+  .food2 {
+    height: 25px;
+    width: 25px;
+    position: relative;
+  left: 3px;
+  bottom: 20px;
+  margin: 0px;
+  }
+
+  .statsDiv {
+    position: absolute;
+    bottom: 630px;
+  }
+  
+  .stat {
+    font-family: Lapsus;
+    margin-top: 3px;
+    font-size: 14pt;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    margin-right: 5px;
+  }
+  
+  .attack {
+      height: 30px;
+      width: 30px;
+      margin-left: px;
+  }
+  
+  .health {
+      height: 30px;
+      width: 30px;
+      margin-left: 5px;
+  }
+
+  .trophy {
+    height: 50px;
+    width: 50px;
+  }
   }
