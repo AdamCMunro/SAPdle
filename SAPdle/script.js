@@ -206,7 +206,7 @@ function displayPet(x) {
             if (pets[x - 1].food != null) {
                 foodImg = document.createElement("img");
                 foodImg.src = "images/foods/" + pets[x - 1].food + "_Icon.webp";
-                if (pets[x-1].name == "Penguin" || pets[x-1].name == "Moose" || pets[x-1].name == "Jellyfish" || pets[x-1].name == "Crane" || pets[x-1].name == "Falcon" || pets[x-1].name == "Lion" || pets[x-1].name == "Racoon" || pets[x-1].name == "Doberman" || pets[x-1].name == "Gorilla" || pets[x-1].name == "Flamingo" || pets[x-1].name == "Wolf" || pets[x-1].name == "Deer") {
+                if (pets[x-1].name == "Penguin" || pets[x-1].name == "Jellyfish" || pets[x-1].name == "Crane" || pets[x-1].name == "Falcon" || pets[x-1].name == "Lion" || pets[x-1].name == "Racoon" || pets[x-1].name == "Doberman" || pets[x-1].name == "Gorilla" || pets[x-1].name == "Flamingo" || pets[x-1].name == "Wolf" || pets[x-1].name == "Deer") {
                     foodImg.classList.add("food2");
                 }
                 else {
